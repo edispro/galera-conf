@@ -40,9 +40,9 @@ if [ "$#" -eq "0" ]; then
         leader="true"
     fi
 
-    connect_string="--wsrep-on --wsrep_cluster_address=gcomm://$(./giddyup ip stringify)?pc.wait_prim=no"
+    connect_string="--wsrep_cluster_address=gcomm://$(./giddyup ip stringify)?pc.wait_prim=no"
     if [ "${leader}" = "true" ] && [ ! -f "/opt/rancher/initialized" ]; then
-        connect_string="--wsrep_cluster_address=gcomm://"
+        connect_string="--wsrep-new-cluster --wsrep_cluster_address=gcomm://"
         touch /opt/rancher/initialized
     fi
 
@@ -51,7 +51,7 @@ if [ "$#" -eq "0" ]; then
         random_sleep
     fi
 
-    set -- mysqld "${connect_string}"
+    set -- mysqld ${connect_string}
 fi 
 
 exec /docker-entrypoint.sh "$@"
