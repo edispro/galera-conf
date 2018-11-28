@@ -13,5 +13,7 @@ RUN chmod +x /confd
 
 ADD https://github.com/rancher/giddyup/releases/download/v0.19.0/giddyup /giddyup
 RUN chmod +x /giddyup
+RUN chmod +x /run
+RUN chmod +x /start_galera
 
 entrypoint ["/run"]
