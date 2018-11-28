@@ -42,7 +42,7 @@ if [ "$#" -eq "0" ]; then
 
     connect_string="--wsrep_cluster_address=gcomm://$(./giddyup ip stringify)?pc.wait_prim=no"
     if [ "${leader}" = "true" ] && [ ! -f "/opt/rancher/initialized" ]; then
-        connect_string="--wsrep-new-cluster --wsrep_cluster_address=gcomm://$(./giddyup ip stringify)"
+        connect_string="--wsrep-new-cluster --wsrep_cluster_address=gcomm://"
         touch /opt/rancher/initialized
     fi
 
