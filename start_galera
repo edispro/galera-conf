@@ -44,6 +44,8 @@ if [ "$#" -eq "0" ]; then
     if [ "${leader}" = "true" ] && [ ! -f "/opt/rancher/initialized" ]; then
         connect_string="--wsrep-new-cluster --wsrep_cluster_address=gcomm://"
         touch /opt/rancher/initialized
+    else
+     connect_string="--wsrep_cluster_address=gcomm://$(./giddyup ip stringify)?pc.bootstrap=1"
     fi
 
     ## Incase this is the initial startup.
