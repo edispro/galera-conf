@@ -16,4 +16,4 @@ RUN chmod +x /giddyup
 RUN chmod +x /run
 RUN chmod +x /start_galera
 
-entrypoint ["/run"]
+ENTRYPOINT ["sh","/run"]
