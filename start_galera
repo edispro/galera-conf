@@ -41,9 +41,9 @@ if [ "$#" -eq "0" ]; then
     fi
 
     connect_string="--wsrep_cluster_address=gcomm://$(./giddyup ip stringify)?pc.wait_prim=no"
-    if [ "${leader}" = "true" ] && [ ! -f "/opt/rancher/initialized" ]; then
+    if [ "${leader}" = "true" ] && [ ! -f "/var/lib/mysql/initialized" ]; then
         connect_string="--wsrep-new-cluster --wsrep_cluster_address=gcomm://"
-        touch /opt/rancher/initialized
+        touch /var/lib/mysql/initialized
     else
      connect_string="--wsrep_cluster_address=gcomm://$(./giddyup ip stringify)?pc.bootstrap=1"
     fi
