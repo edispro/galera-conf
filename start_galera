@@ -6,7 +6,7 @@ cd $(dirname $0)
 random_sleep()
 {
     SLEEP_TIME=$RANDOM
-    let "SLEEP_TIME %= 15"
+    let "SLEEP_TIME %= 30"
     sleep ${SLEEP_TIME}
 }
 
