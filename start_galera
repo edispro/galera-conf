@@ -45,7 +45,7 @@ if [ "$#" -eq "0" ]; then
         # if [ "${leader}" = "true" ]; then
         connect_string="--wsrep-new-cluster --wsrep_cluster_address=gcomm://"
         touch /var/lib/mysql/initialized
-    else  if [ "${leader}" = "true" ]; then 
+    elif [ "${leader}" = "true" ]; then 
      connect_string="--wsrep_cluster_address=gcomm://$(./giddyup ip stringify)?pc.bootstrap=1"
     fi
 
