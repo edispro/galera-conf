@@ -40,13 +40,13 @@ if [ "$#" -eq "0" ]; then
         leader="true"
     fi
 
-    connect_string="--wsrep_cluster_address=gcomm://$(./giddyup ip stringify)"
+    connect_string="--wsrep_cluster_address=gcomm://$(./giddyup ip stringify)?pc.wait_prim=no"
     if [ "${leader}" = "true" ] && [ ! -f "/var/lib/mysql/initialized" ]; then
         # if [ "${leader}" = "true" ]; then
         connect_string="--wsrep-new-cluster --wsrep_cluster_address=gcomm://"
         touch /var/lib/mysql/initialized
     elif [ "${leader}" = "true" ]; then 
-     connect_string="--wsrep_cluster_address=gcomm://$(./giddyup ip stringify)?pc.bootstrap=1"
+     connect_string="--wsrep-new-cluster --wsrep_cluster_address=gcomm://$(./giddyup ip stringify)?pc.bootstrap=1"
     fi
 
     ## Incase this is the initial startup.
