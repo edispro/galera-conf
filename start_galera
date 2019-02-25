@@ -55,7 +55,7 @@ if [ "$#" -eq "0" ]; then
     if [ "${leader}" = "false" ] && [ ! -f "/etc/mysql/conf.d/clusterlive" ]; then
         random_sleep
     else
-    sleep 5
+    sleep 10
     fi
 
     set -- mysqld ${connect_string}
