@@ -41,12 +41,12 @@ if [ "$#" -eq "0" ]; then
     fi
 
     connect_string="--wsrep_cluster_address=gcomm://$(./giddyup ip stringify)?pc.wait_prim=no"
-    if [ "${leader}" = "true" ] && [ ! -f "/var/lib/mysql/initialized" ]; then
+    if [ "${leader}" = "true" ] && [ ! -f "/var/lib/mysql/initialized" ]  && [ ! -f "/etc/mysql/conf.d/clusterlive" ]; then
         # if [ "${leader}" = "true" ]; then
         connect_string="--wsrep-new-cluster --wsrep_cluster_address=gcomm://"
         touch /var/lib/mysql/initialized
         sed -i 's/^safe_to_bootstrap:.*/safe_to_bootstrap: 1/' /var/lib/mysql/grastate.dat
-    elif [ "${leader}" = "true" ]; then 
+    elif [ "${leader}" = "true" ] && [ ! -f "/etc/mysql/conf.d/clusterlive" ]; then 
      connect_string="--wsrep-new-cluster --wsrep_cluster_address=gcomm://$(./giddyup ip stringify)"
      sed -i 's/^safe_to_bootstrap:.*/safe_to_bootstrap: 1/' /var/lib/mysql/grastate.dat
     fi
