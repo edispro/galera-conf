@@ -52,7 +52,7 @@ if [ "$#" -eq "0" ]; then
     fi
 
     ## Incase this is the initial startup.
-    if [ "${leader}" = "false" ]; then
+    if [ "${leader}" = "false" ] && [ ! -f "/etc/mysql/conf.d/clusterlive" ]; then
         random_sleep
     fi
 
