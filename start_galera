@@ -54,6 +54,8 @@ if [ "$#" -eq "0" ]; then
     ## Incase this is the initial startup.
     if [ "${leader}" = "false" ] && [ ! -f "/etc/mysql/conf.d/clusterlive" ]; then
         random_sleep
+    else
+    sleep 5
     fi
 
     set -- mysqld ${connect_string}
